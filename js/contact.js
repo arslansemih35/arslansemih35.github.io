@@ -1,6 +1,7 @@
+// contact.js
 (function() {
-  // EmailJS init
-  emailjs.init("ny1QhU0f1LuLW6fPR"); // Buraya Public Key'in gelecek
+  // EmailJS public key ile init
+  emailjs.init("ny1QhU0f1LuLW6fPR");
 
   const form = document.getElementById('contact-form');
   const resultDiv = document.getElementById('form-result');
@@ -9,20 +10,20 @@
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Butonu devre dışı bırak ve gönderim sırasında "Gönderiliyor..." yap
+    // Gönderim öncesi butonu devre dışı bırak
     submitBtn.disabled = true;
-    submitBtn.textContent = "Gönderiliyor...";
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Gönderiliyor...';
 
-    // Önceki mesaj ve renkleri temizle
+    // Önceki mesajı temizle
     resultDiv.classList.remove('text-green-500', 'text-red-500');
     resultDiv.classList.add('hidden');
     resultDiv.textContent = '';
 
     const formData = {
-      name: form.name.value,
-      email: form.email.value,
-      subject: form.subject.value,
-      message: form.message.value
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim()
     };
 
     const serviceID = 'service_8wvyfiq';
@@ -30,19 +31,19 @@
 
     emailjs.send(serviceID, templateID, formData)
       .then(() => {
+        // Başarılı mesaj
         resultDiv.textContent = "Mesajınız başarıyla gönderildi!";
         resultDiv.classList.remove('hidden');
         resultDiv.classList.add('text-green-500');
 
-        // Formu sıfırla
         form.reset();
 
-        // Butonu eski haline getir
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Gönder';
       })
       .catch((error) => {
         console.error('Email gönderim hatası:', error);
+
         resultDiv.textContent = "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.";
         resultDiv.classList.remove('hidden');
         resultDiv.classList.add('text-red-500');

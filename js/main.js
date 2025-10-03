@@ -30,10 +30,10 @@ function initTyped() {
     new Typed('#typed', {
       strings: [
         'Yazılım Geliştirici',
-        'Mobil Uygulama Uzmanı',
+        'Mobil Uygulama Geliştirici',
         'Backend API',
-        'Flutter Öğrencisi',
-        'Oyun Geliştiricisi'
+        'Flutter Geliştirici',
+        'TMODS Studios'
       ],
       typeSpeed: 50,
       backSpeed: 30,
@@ -243,4 +243,5 @@ window.addEventListener('scroll', function() {
       document.querySelector(`nav a[href*=${sectionId}]`).classList.remove('text-primary');
     }
   });
+
 }); 

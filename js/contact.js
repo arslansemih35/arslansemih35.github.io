@@ -26,7 +26,7 @@
       message: form.message.value.trim()
     };
 
-    const serviceID = 'service_8wvyfiq';
+    const serviceID = 'service_zv5t4jq';
     const templateID = 'template_6r9esv1';
 
     emailjs.send(serviceID, templateID, formData)
@@ -53,3 +53,4 @@
       });
   });
 })();
+

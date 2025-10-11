@@ -1,288 +1,689 @@
-/* Main Style CSS for Portfolio - Semih Arslan */
-
-body { 
-  font-family: 'JetBrains Mono', monospace;
-  scroll-behavior: smooth;
-  background-color: #0f172a;
-  color: #f1f5f9;
-}
-
-/* Text Gradients */
-.gradient-text {
-  background: linear-gradient(to right, #4ade80, #22d3ee);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Terminal Design */
-.terminal-header {
-  background: #1e293b;
-  border-radius: 8px 8px 0 0;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-}
-
-.terminal-circle {
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  margin-right: 6px;
-}
-
-.terminal-body {
-  background: #0f172a;
-  border-radius: 0 0 8px 8px;
-  padding: 24px;
-  border: 1px solid #1e293b;
-}
-
-/* Background Hexagon Design */
-.hex-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  opacity: 0.2;
-}
-
-.hex {
-  position: absolute;
-  width: 20px;
-  height: 35px;
-  background-color: #4ade80;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  transition: transform 1s ease-in-out;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #4ade80;
-}
-
-/* Cursor Blink Animation */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor {
-  display: inline-block;
-  width: 10px;
-  height: 24px;
-  background: #4ade80;
-  margin-left: 5px;
-  animation: blink 1s infinite;
-}
-
-/* Navigation Design */
-.nav-item {
-  position: relative;
-}
-
-.nav-item::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #4ade80;
-  transition: width 0.3s ease;
-}
-
-.nav-item:hover::after {
-  width: 100%;
-}
-
-/* Card Animations */
-.tilt-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tilt-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Skill Bars */
-.skill-bar {
-  height: 8px;
-  background: #1e293b;
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 15px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(to right, #4ade80, #22d3ee);
-  border-radius: 4px;
-  transition: width 1.5s cubic-bezier(0.26, 0.86, 0.44, 0.98);
-  position: relative;
-  box-shadow: 0 1px 3px rgba(74, 222, 128, 0.4);
-}
-
-/* Skill Progress Animation */
-.skill-progress::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, 
-    rgba(255, 255, 255, 0) 0%, 
-    rgba(255, 255, 255, 0.3) 50%, 
-    rgba(255, 255, 255, 0) 100%);
-  width: 50%;
-  height: 100%;
-  animation: shimmer 1.7s infinite;
-  transform: skewX(-20deg);
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%) skewX(-20deg); }
-  100% { transform: translateX(200%) skewX(-20deg); }
-}
-
-.skill-percentage {
-  transition: all 0.5s ease;
-  font-weight: 500;
-  color: #4ade80;
-}
-
-/* Skill category heading */
-.bg-dark .text-primary.mb-6 {
-  border-left: 3px solid #4ade80;
-  padding-left: 10px;
-  transform: translateX(-10px);
-}
-
-/* Header Animation */
-header {
-  transition: all 0.3s ease;
-}
-
-header.scrolled {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-/* Contact Form Elements */
-input, textarea {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input:focus, textarea:focus {
-  border-color: #4ade80;
-  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.2);
-  outline: none;
-}
-
-/* Button Hover Effects */
-.btn-primary {
-  background-color: #22c55e;
-  color: white;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-primary:hover {
-  background-color: #16a34a;
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  border: 1px solid #22c55e;
-  color: #22c55e;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-outline:hover {
-  background-color: rgba(34, 197, 94, 0.1);
-}
-
-/* Social Media Icons */
-.social-icon {
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.social-icon:hover {
-  transform: translateY(-3px);
-  color: #4ade80;
-}
-
-/* Advanced Animations */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.floating {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.pulse {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Section Transitions */
-.section-hidden {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .terminal-header {
-    padding: 6px 12px;
-  }
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="google-site-verification" content="lF4A0nxtxtP0WdA1hvSCUlKdfe0dwcf8mRFwvux-Mo4" />
+  <title>Semih Arslan | Yazılım Geliştirici</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              light: '#4ade80',
+              DEFAULT: '#22c55e',
+              dark: '#16a34a',
+            },
+            dark: {
+              light: '#1e293b',
+              DEFAULT: '#0f172a',
+              dark: '#020617',
+            }
+          },
+          fontFamily: {
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WEGXXGK80"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
   
-  .terminal-body {
-    padding: 16px;
-  }
-  
-  .skill-bar {
-    height: 6px;
-  }
-}
+    gtag('config', 'G-0WEGXXGK80');
+  </script>
+</head>
+<body class="bg-dark text-gray-100 font-mono">
+  <!-- Background hexagons -->
+  <div class="hex-container"></div>
 
-@media (max-width: 640px) {
-  .terminal-header {
-    padding: 4px 8px;
-  }
-  
-  .terminal-circle {
-    height: 8px;
-    width: 8px;
-  }
-} 
+  <!-- Navbar -->
+  <header class="bg-dark-light/80 backdrop-blur-lg shadow-md fixed top-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <a href="#" class="flex items-center space-x-2">
+        <div class="text-primary text-2xl font-bold">
+          <span class="text-white">&lt;</span>semih<span class="text-primary">.dev</span><span class="text-white">/&gt;</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex space-x-8 text-sm">
+        <a href="#about" class="nav-item hover:text-primary">Hakkımda</a>
+        <a href="#skills" class="nav-item hover:text-primary">Yetenekler</a>
+        <a href="#projects" class="nav-item hover:text-primary">Projeler</a>
+        <a href="#community" class="nav-item hover:text-primary">Topluluk</a>
+        <a href="#contact" class="nav-item hover:text-primary">İletişim</a>
+      </nav>
+      <button class="md:hidden text-xl" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-dark-light/90 backdrop-blur-lg p-4 text-center">
+      <div class="flex flex-col space-y-4">
+        <a href="#about" class="py-2 hover:text-primary">Hakkımda</a>
+        <a href="#skills" class="py-2 hover:text-primary">Yetenekler</a>
+        <a href="#projects" class="py-2 hover:text-primary">Projeler</a>
+        <a href="#community" class="py-2 hover:text-primary">Topluluk</a>
+        <a href="#contact" class="py-2 hover:text-primary">İletişim</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+    <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+      <div class="w-full h-full bg-[url('https://api.placeholder.com/400/320')] bg-center bg-no-repeat opacity-20"></div>
+    </div>
+    <div data-aos="fade-up" data-aos-duration="1000" class="z-10">
+      <p class="text-primary mb-2 text-lg">// Hoş Geldiniz</p>
+      <h1 class="text-5xl md:text-7xl font-bold mb-4">
+        <span class="block">Merhaba, ben</span>
+        <span class="gradient-text mt-2 block">Semih Arslan</span>
+      </h1>
+      <div class="flex items-center justify-center mt-6 text-lg md:text-xl text-gray-400 mb-8">
+        <span class="text-primary-light mr-2">&gt;</span>
+        <span id="typed"></span>
+        <span class="cursor"></span>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 mt-8">
+        <a href="#projects" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-md font-medium transition flex items-center justify-center group">
+          <span>Projelerime Göz At</span>
+          <i class="fas fa-arrow-right ml-2 transition transform group-hover:translate-x-1"></i>
+        </a>
+        <a href="#contact" class="border border-primary text-primary hover:bg-primary/10 px-8 py-4 rounded-md font-medium transition">
+          Benimle İletişime Geç
+        </a>
+      </div>
+      <div class="flex justify-center mt-12 space-x-6">
+        <a href="https://github.com/arslansemih35" target="_blank" class="text-gray-400 hover:text-primary text-2xl transition">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/semih-arslan-a43a5930b/" target="_blank" class="text-gray-400 hover:text-primary text-2xl transition">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:arslansemih328@gmail.com" class="text-gray-400 hover:text-primary text-2xl transition">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <a href="#about" class="text-gray-400 hover:text-primary">
+        <i class="fas fa-chevron-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 px-6 relative">
+    <div class="max-w-5xl mx-auto">
+      <div class="parallax" data-speed="0.05">
+        <div class="terminal-header">
+          <div class="terminal-circle bg-red-500"></div>
+          <div class="terminal-circle bg-yellow-500"></div>
+          <div class="terminal-circle bg-green-500"></div>
+          <div class="ml-4 text-sm text-gray-400">semih@developer:~/about</div>
+        </div>
+        <div class="terminal-body" data-aos="fade-up">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6">
+            <span class="text-primary-light">const</span> <span class="text-white">about</span> <span class="text-gray-400">=</span> <span class="text-primary-light">{</span>
+          </h2>
+          <div class="pl-8">
+            <p class="text-gray-300 leading-loose mb-6">
+              <span class="text-primary-light">bio:</span> <span class="text-gray-200">"Bilgisayar Programcılığı mezunuyum ve yazılım geliştirme alanında çeşitli projeler üretiyorum. Flutter, C#, Java, Kotlin, PHP ve MSSQL kullanarak Windows, web ve mobil uygulamalar geliştirdim. REST API entegrasyonları ve veri tabanı yönetimi konularında deneyim sahibiyim.
+
+E-ticaret uygulamaları, oyun geliştirme ve kurumsal yazılım projelerinde yer alarak pratik bilgi ve becerilerimi güçlendirdim. Çözüm odaklı yaklaşımım ve takım çalışmasına yatkınlığım sayesinde projelerde aktif rol alıyorum."</span>,
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <p class="text-primary-light">education: <span class="text-gray-200">"Manisa Celal Bayar Üniversitesi"</span>,</p>
+                <p class="text-primary-light mt-3">experience: <span class="text-gray-200">"Yazılım geliştirme stajı (2025 Bahar dönemi)"</span>,</p>
+                <p class="text-primary-light mt-3">location: <span class="text-gray-200">"Türkiye"</span>,</p>
+              </div>
+              <div>
+                <p class="text-primary-light">interests: [</p>
+                <ul class="pl-6 text-gray-300 list-none">
+                  <li><span class="text-gray-400">•</span> "Mobil Geliştirme",</li>
+                  <li><span class="text-gray-400">•</span> "Backend API",</li>
+                  <li><span class="text-gray-400">•</span> "Oyun Geliştirme",</li>
+                  <li><span class="text-gray-400">•</span> "Teknoloji Trendleri"</li>
+                </ul>
+                <p class="text-primary-light">],</p>
+              </div>
+            </div>
+          </div>
+          <h2 class="text-2xl mt-6">
+            <span class="text-primary-light">}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-24 px-6 bg-dark-light">
+    <div class="max-w-5xl mx-auto">
+      <div data-aos="fade-up">
+        <div class="flex items-center mb-12">
+          <div class="w-12 h-1 bg-primary mr-4"></div>
+          <h2 class="text-3xl font-bold">Yetenekler</h2>
+          <div class="w-12 h-1 bg-primary ml-4"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+          <!-- Frontend Skills -->
+          <div class="bg-dark p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-primary mb-6 flex items-center">
+              <i class="fas fa-code mr-3"></i> Frontend
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>HTML / CSS / JS</span>
+                  <span class="text-primary skill-percentage">85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>Flutter (Dart)</span>
+                  <span class="text-primary skill-percentage">80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>Android Layout (XML)</span>
+                  <span class="text-primary skill-percentage">60%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Backend Skills -->
+          <div class="bg-dark p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-primary mb-6 flex items-center">
+              <i class="fas fa-server mr-3"></i> Backend
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>Flutter (Dart)</span>
+                  <span class="text-primary skill-percentage">80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>C# (Windows Forms)</span>
+                  <span class="text-primary skill-percentage">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>RESTful API</span>
+                  <span class="text-primary skill-percentage">85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Database Skills -->
+          <div class="bg-dark p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-primary mb-6 flex items-center">
+              <i class="fas fa-database mr-3"></i> Veri Tabanı
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>MSSQL</span>
+                  <span class="text-primary skill-percentage">85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>SQLite (Yakında)</span>
+                  <span class="text-primary skill-percentage">20%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>Supabase</span>
+                  <span class="text-primary skill-percentage">50%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tools & Others -->
+          <div class="bg-dark p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-primary mb-6 flex items-center">
+              <i class="fas fa-tools mr-3"></i> Araçlar & Diğer
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>Git & GitHub</span>
+                  <span class="text-primary skill-percentage">75%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>Claude AI</span>
+                  <span class="text-primary skill-percentage">100%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span>Cursor IDE</span>
+                  <span class="text-primary skill-percentage">100%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div data-aos="fade-up">
+        <div class="flex items-center mb-12">
+          <div class="w-12 h-1 bg-primary mr-4"></div>
+          <h2 class="text-3xl font-bold">Projeler</h2>
+          <div class="w-12 h-1 bg-primary ml-4"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card">
+            <div class="relative h-48 bg-dark project-image">
+              <img src="images/erp.png" alt="Teknik Resim Görüntüleyici" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fab fa-flutter text-6xl text-primary/70"></i>
+              </div>
+            </div>
+            <div class="p-6 project-content">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">Teknik Resim Görüntüleyici</h3>
+                <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags">Flutter</span>
+              </div>
+              <p class="text-gray-400 text-sm mb-6">Flutter ile geliştirdiğim, filtreleme ve API bağlantısı içeren teknik doküman görüntüleyici uygulama.</p>
+              <div class="flex justify-between items-center">
+                <a href="https://github.com/arslansemih35" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
+                  <span>Canlı Önizleme</span>
+                  <i class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-1 transition"></i>
+                </a>
+                <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
+                  <i class="fab fa-github text-xl"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 2 -->
+          <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card">
+            <div class="relative h-48 bg-dark project-image">
+              <img src="images/slidestone.png" alt="SlideStone" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fab fa-unreal-engine text-6xl text-primary/70"></i>
+              </div>
+            </div>
+            <div class="p-6 project-content">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">SlideStone</h3>
+                <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags">Flutter</span>
+              </div>
+              <p class="text-gray-400 text-sm mb-6">Zihninizi, klasik 15 bulmaca oyununun modern bir versiyonu olan SlideStone ile zorlayın. Numaralandırılmış taşları boş alana kaydırarak sıralayın. Ne kadar hızlı çözebilirsiniz?</p>
+              <div class="flex justify-between items-center">
+                <a href="https://play.google.com/store/apps/details?id=com.tmodsstudio.slidestone&pcampaignid=web_share" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
+                  <span>Play Store Link</span>
+                  <i class="fas fa-play ml-2 transform group-hover:translate-x-1 transition"></i>
+                </a>
+                <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
+                  <i class="fab fa-github text-xl"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 3 -->
+          <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card">
+            <div class="relative h-48 bg-dark project-image">
+              <img src="images/optik.png" alt="Optik Değerlendirici" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fab fa-unreal-engine text-6xl text-primary/70"></i>
+              </div>
+            </div>
+            <div class="p-6 project-content">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">Optik Değerlendirici</h3>
+                <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags">C# Windows Forms</span>
+              </div>
+              <p class="text-gray-400 text-sm mb-6">C# Windows Forms ile Optik okuyucudan alınan sınav verilerini işleyip hızlı ve hatasız şekilde analiz eden, sonuçları tablo ve rapor halinde sunan değerlendirme aracı.</p>
+              <div class="flex justify-between items-center">
+                <a href="https://github.com/arslansemih35" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
+                  <span>Link</span>
+                  <i class="fas fa-play ml-2 transform group-hover:translate-x-1 transition"></i>
+                </a>
+                <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
+                  <i class="fab fa-github text-xl"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12">
+          <a href="https://github.com/arslansemih35" class="inline-flex items-center text-primary border border-primary hover:bg-primary hover:text-white px-6 py-3 rounded-md transition duration-300">
+            <span>Tüm Projeleri Gör</span>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community/Discord Section - YENİ BÖLÜM -->
+  <section id="community" class="py-24 px-6 bg-dark-light">
+    <div class="max-w-5xl mx-auto">
+      <div data-aos="fade-up">
+        <div class="flex items-center mb-12">
+          <div class="w-12 h-1 bg-primary mr-4"></div>
+          <h2 class="text-3xl font-bold">Topluluk</h2>
+          <div class="w-12 h-1 bg-primary ml-4"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <!-- Sol taraf - Açıklama -->
+          <div class="bg-dark p-8 rounded-lg shadow-lg">
+            <div class="flex items-center mb-6">
+              <i class="fab fa-discord text-5xl text-primary mr-4"></i>
+              <div>
+                <h3 class="text-2xl font-bold">Discord Sunucusu</h3>
+                <p class="text-gray-400">Topluluğa katıl!</p>
+              </div>
+            </div>
+            
+            <p class="text-gray-300 leading-relaxed mb-6">
+              Discord sunucuma katılarak projeler hakkında konuşabilir, sorularınızı sorabilir 
+              ve diğer geliştiricilerle etkileşime geçebilirsiniz.
+            </p>
+            
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-white">Aktif Topluluk</h4>
+                  <p class="text-gray-400 text-sm">Yazılım geliştirme konularında sohbet edin</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-white">Yardım & Destek</h4>
+                  <p class="text-gray-400 text-sm">Projelerle ilgili sorularınızı sorun</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-white">Güncellemeler</h4>
+                  <p class="text-gray-400 text-sm">Yeni projeler ve güncellemeler hakkında bilgi alın</p>
+                </div>
+              </div>
+            </div>
+            
+            <a href="https://discord.gg/5xyaYYZFas" target="_blank" 
+               class="mt-6 inline-flex items-center bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-md font-medium transition">
+              <i class="fab fa-discord mr-2"></i>
+              Sunucuya Katıl
+            </a>
+          </div>
+          
+          <!-- Sağ taraf - Discord Widget -->
+          <div class="bg-dark p-6 rounded-lg shadow-lg">
+            <div class="discord-widget-container">
+              <iframe src="https://discord.com/widget?id=845365958435930122&theme=dark" 
+                      width="100%" 
+                      height="500" 
+                      allowtransparency="true" 
+                      frameborder="0" 
+                      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                      class="rounded-lg">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 px-6 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div data-aos="fade-up">
+        <div class="flex items-center mb-12">
+          <div class="w-12 h-1 bg-primary mr-4"></div>
+          <h2 class="text-3xl font-bold">İletişim</h2>
+          <div class="w-12 h-1 bg-primary ml-4"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-5 gap-8">
+          <!-- Sol taraf - İletişim Bilgileri -->
+          <div class="md:col-span-2">
+            <div class="bg-dark p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">İletişim Bilgileri</h3>
+              
+              <div class="space-y-4 mt-6">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-envelope text-primary"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400">Email</p>
+                    <a href="mailto:arslansemih328@gmail.com" class="text-white hover:text-primary">arslansemih328@gmail.com</a>
+                  </div>
+                </div>
+                
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-map-marker-alt text-primary"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400">Konum</p>
+                    <p>İzmir, Türkiye</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-graduation-cap text-primary"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400">Eğitim</p>
+                    <p>Manisa Celal Bayar Üniversitesi</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-8">
+                <h4 class="text-lg font-medium mb-4">Sosyal Medya</h4>
+                <div class="flex space-x-4">
+                  <a href="https://github.com/arslansemih35" class="w-10 h-10 bg-dark-dark rounded-full flex items-center justify-center hover:bg-primary/20 transition social-icon">
+                    <i class="fab fa-github text-primary"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/semih-arslan-a43a5930b/" class="w-10 h-10 bg-dark-dark rounded-full flex items-center justify-center hover:bg-primary/20 transition social-icon">
+                    <i class="fab fa-linkedin text-primary"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Discord Widget - İletişim bölümünde küçük versiyon -->
+            <div class="bg-dark p-6 rounded-lg shadow-lg mt-8" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fab fa-discord text-primary mr-2"></i>
+                Discord Sunucusu
+              </h3>
+              <div class="discord-widget-container">
+                <iframe src="https://discord.com/widget?id=845365958435930122&theme=dark" 
+                        width="100%" 
+                        height="400" 
+                        allowtransparency="true" 
+                        frameborder="0" 
+                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                        class="rounded-lg">
+                </iframe>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sağ taraf - İletişim Formu -->
+          <div class="md:col-span-3">
+            <div class="bg-dark p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-6">Bir Mesaj Gönder</h3>
+              
+              <div id="form-result" class="mb-6 hidden"></div>
+              
+              <form id="contact-form" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Adınız</label>
+                    <input type="text" name="name" class="w-full bg-dark-light border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary rounded-md p-3 text-white transition" required>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">E-posta</label>
+                    <input type="email" name="email" class="w-full bg-dark-light border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary rounded-md p-3 text-white transition" required>
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-2">Konu</label>
+                  <input type="text" name="subject" class="w-full bg-dark-light border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary rounded-md p-3 text-white transition" required>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-2">Mesajınız</label>
+                  <textarea name="message" rows="5" class="w-full bg-dark-light border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary rounded-md p-3 text-white transition" required></textarea>
+                </div>
+                
+                <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-md font-medium transition w-full sm:w-auto btn-primary">
+                  <i class="fas fa-paper-plane mr-2"></i> Gönder
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark pt-12 pb-6">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="border-t border-gray-800 pt-8 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <div class="text-xl font-bold">
+              <span class="text-white">&lt;</span>semih<span class="text-primary">.dev</span><span class="text-white">/&gt;</span>
+            </div>
+            <p class="text-gray-400 text-sm mt-2">Yazılım Geliştirici & Mobil Uygulama Geliştirici</p>
+          </div>
+          
+          <div class="flex space-x-4 mb-4 md:mb-0">
+            <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-primary social-icon">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/semih-arslan-a43a5930b/" class="text-gray-400 hover:text-primary social-icon">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:arslansemih328@gmail.com" class="text-gray-400 hover:text-primary social-icon">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+          
+          <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
+            <a href="#about" class="text-gray-400 hover:text-primary">Hakkımda</a>
+            <a href="#skills" class="text-gray-400 hover:text-primary">Yetenekler</a>
+            <a href="#projects" class="text-gray-400 hover:text-primary">Projeler</a>
+            <a href="#contact" class="text-gray-400 hover:text-primary">İletişim</a>
+          </div>
+        </div>
+        
+        <div class="text-center text-gray-500 text-sm mt-8">
+          © 2025 Semih Arslan | Tüm hakları saklıdır · <a href="mailto:arslansemih328@gmail.com" class="text-primary hover:underline">İletişim</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- JavaScript dosyaları -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

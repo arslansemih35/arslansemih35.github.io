@@ -64,6 +64,7 @@
         <a href="#about" class="nav-item hover:text-primary">Hakkımda</a>
         <a href="#skills" class="nav-item hover:text-primary">Yetenekler</a>
         <a href="#projects" class="nav-item hover:text-primary">Projeler</a>
+        <a href="#community" class="nav-item hover:text-primary">Topluluk</a>
         <a href="#contact" class="nav-item hover:text-primary">İletişim</a>
       </nav>
       <button class="md:hidden text-xl" id="menuToggle">
@@ -76,6 +77,7 @@
         <a href="#about" class="py-2 hover:text-primary">Hakkımda</a>
         <a href="#skills" class="py-2 hover:text-primary">Yetenekler</a>
         <a href="#projects" class="py-2 hover:text-primary">Projeler</a>
+        <a href="#community" class="py-2 hover:text-primary">Topluluk</a>
         <a href="#contact" class="py-2 hover:text-primary">İletişim</a>
       </div>
     </div>
@@ -442,8 +444,85 @@ E-ticaret uygulamaları, oyun geliştirme ve kurumsal yazılım projelerinde yer
     </div>
   </section>
 
+  <!-- Community/Discord Section - YENİ BÖLÜM -->
+  <section id="community" class="py-24 px-6 bg-dark-light">
+    <div class="max-w-5xl mx-auto">
+      <div data-aos="fade-up">
+        <div class="flex items-center mb-12">
+          <div class="w-12 h-1 bg-primary mr-4"></div>
+          <h2 class="text-3xl font-bold">Topluluk</h2>
+          <div class="w-12 h-1 bg-primary ml-4"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <!-- Sol taraf - Açıklama -->
+          <div class="bg-dark p-8 rounded-lg shadow-lg">
+            <div class="flex items-center mb-6">
+              <i class="fab fa-discord text-5xl text-primary mr-4"></i>
+              <div>
+                <h3 class="text-2xl font-bold">Discord Sunucusu</h3>
+                <p class="text-gray-400">Topluluğa katıl!</p>
+              </div>
+            </div>
+            
+            <p class="text-gray-300 leading-relaxed mb-6">
+              Discord sunucuma katılarak projeler hakkında konuşabilir, sorularınızı sorabilir 
+              ve diğer geliştiricilerle etkileşime geçebilirsiniz.
+            </p>
+            
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-white">Aktif Topluluk</h4>
+                  <p class="text-gray-400 text-sm">Yazılım geliştirme konularında sohbet edin</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-white">Yardım & Destek</h4>
+                  <p class="text-gray-400 text-sm">Projelerle ilgili sorularınızı sorun</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-white">Güncellemeler</h4>
+                  <p class="text-gray-400 text-sm">Yeni projeler ve güncellemeler hakkında bilgi alın</p>
+                </div>
+              </div>
+            </div>
+            
+            <a href="https://discord.gg/5xyaYYZFas" target="_blank" 
+               class="mt-6 inline-flex items-center bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-md font-medium transition">
+              <i class="fab fa-discord mr-2"></i>
+              Sunucuya Katıl
+            </a>
+          </div>
+          
+          <!-- Sağ taraf - Discord Widget -->
+          <div class="bg-dark p-6 rounded-lg shadow-lg">
+            <div class="discord-widget-container">
+              <iframe src="https://discord.com/widget?id=845365958435930122&theme=dark" 
+                      width="100%" 
+                      height="500" 
+                      allowtransparency="true" 
+                      frameborder="0" 
+                      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                      class="rounded-lg">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
-  <section id="contact" class="py-24 px-6 bg-dark-light relative overflow-hidden">
+  <section id="contact" class="py-24 px-6 relative overflow-hidden">
     <div class="max-w-4xl mx-auto relative z-10">
       <div data-aos="fade-up">
         <div class="flex items-center mb-12">
@@ -453,6 +532,7 @@ E-ticaret uygulamaları, oyun geliştirme ve kurumsal yazılım projelerinde yer
         </div>
         
         <div class="grid md:grid-cols-5 gap-8">
+          <!-- Sol taraf - İletişim Bilgileri -->
           <div class="md:col-span-2">
             <div class="bg-dark p-6 rounded-lg shadow-lg">
               <h3 class="text-xl font-semibold mb-4">İletişim Bilgileri</h3>
@@ -498,17 +578,30 @@ E-ticaret uygulamaları, oyun geliştirme ve kurumsal yazılım projelerinde yer
                   <a href="https://www.linkedin.com/in/semih-arslan-a43a5930b/" class="w-10 h-10 bg-dark-dark rounded-full flex items-center justify-center hover:bg-primary/20 transition social-icon">
                     <i class="fab fa-linkedin text-primary"></i>
                   </a>
-                  <!--<a href="#" class="w-10 h-10 bg-dark-dark rounded-full flex items-center justify-center hover:bg-primary/20 transition"> -->
-                  <!--  <i class="fab fa-twitter text-primary"></i> -->
-                  <!--</a> -->
-                  <!--<a href="#" class="w-10 h-10 bg-dark-dark rounded-full flex items-center justify-center hover:bg-primary/20 transition"> -->
-                  <!--  <i class="fab fa-instagram text-primary"></i> -->
-                  <!--</a> -->
                 </div>
+              </div>
+            </div>
+
+            <!-- Discord Widget - İletişim bölümünde küçük versiyon -->
+            <div class="bg-dark p-6 rounded-lg shadow-lg mt-8" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fab fa-discord text-primary mr-2"></i>
+                Discord Sunucusu
+              </h3>
+              <div class="discord-widget-container">
+                <iframe src="https://discord.com/widget?id=845365958435930122&theme=dark" 
+                        width="100%" 
+                        height="400" 
+                        allowtransparency="true" 
+                        frameborder="0" 
+                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                        class="rounded-lg">
+                </iframe>
               </div>
             </div>
           </div>
           
+          <!-- Sağ taraf - İletişim Formu -->
           <div class="md:col-span-3">
             <div class="bg-dark p-6 rounded-lg shadow-lg">
               <h3 class="text-xl font-semibold mb-6">Bir Mesaj Gönder</h3>
@@ -593,20 +686,4 @@ E-ticaret uygulamaları, oyun geliştirme ve kurumsal yazılım projelerinde yer
   <script src="js/animations.js"></script>
   <script src="js/contact.js"></script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

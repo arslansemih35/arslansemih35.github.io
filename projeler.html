@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tüm Projeler | Semih Arslan</title>
+  
+  <!-- Tailwind & Kütüphaneler -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Ana CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { light: '#4ade80', DEFAULT: '#22c55e', dark: '#16a34a' },
+            dark: { light: '#1e293b', DEFAULT: '#0f172a', dark: '#020617' }
+          },
+          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-dark text-gray-100 font-mono">
+  <!-- Background hexagons -->
+  <div class="hex-container"></div>
+
+  <!-- Navbar -->
+  <header class="bg-dark-light/80 backdrop-blur-lg shadow-md fixed top-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="flex items-center space-x-2">
+        <div class="text-primary text-2xl font-bold">
+          <span class="text-white">&lt;</span>semih<span class="text-primary">.dev</span><span class="text-white">/&gt;</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex space-x-8 text-sm">
+        <a href="index.html#about" class="nav-item hover:text-primary">Hakkımda</a>
+        <a href="index.html#skills" class="nav-item hover:text-primary">Yetenekler</a>
+        <a href="#" class="nav-item text-primary border-b-2 border-primary">Projeler</a>
+        <a href="index.html#community" class="nav-item hover:text-primary">Topluluk</a>
+        <a href="index.html#contact" class="nav-item hover:text-primary">İletişim</a>
+      </nav>
+      <button class="md:hidden text-xl" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-dark-light/90 backdrop-blur-lg p-4 text-center">
+      <div class="flex flex-col space-y-4">
+        <a href="index.html#about" class="py-2 hover:text-primary">Hakkımda</a>
+        <a href="index.html#skills" class="py-2 hover:text-primary">Yetenekler</a>
+        <a href="#" class="py-2 text-primary">Projeler</a>
+        <a href="index.html#contact" class="py-2 hover:text-primary">İletişim</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Projects Showcase Section -->
+  <section class="pt-32 pb-24 px-6 min-h-screen relative z-10">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Başlık -->
+      <div class="flex flex-col items-center mb-16 text-center" data-aos="fade-up">
+        <p class="text-primary mb-2">// Portfolyo</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Tüm <span class="text-primary">Projelerim</span></h1>
+        <div class="w-24 h-1 bg-primary mt-2"></div>
+        <p class="text-gray-400 mt-6 max-w-2xl">TMODS Studios çatısı altında ve bireysel olarak geliştirdiğim mobil uygulamalar, oyunlar ve masaüstü yazılım projelerinin detaylı arşivi.</p>
+      </div>
+      
+      <!-- Projeler Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Proje 1: Puantaj Defteri -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative h-48 bg-dark project-image">
+            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
+              <i class="fab fa-google-play text-6xl text-primary/70"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">Puantaj Defteri</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Google Play Store'da aktif olarak yayında olan zaman işleyiş ve muhasebe kayıt uygulaması. Gelişmiş veri tabanı mimarisi (v113) ve sorunsuz veri transfer (migration) sistemleri içerir.</p>
+            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
+              <a href="#" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
+                <span>Play Store Link</span>
+                <i class="fas fa-play ml-2 transform group-hover:translate-x-1 transition"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proje 2: ByteDash: Syntax Escape -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative h-48 bg-dark project-image">
+            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
+              <i class="fab fa-unity text-6xl text-primary/70"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold truncate pr-2">ByteDash: Syntax Escape</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Unity / Flutter</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Geliştirme aşamasında olan, 3D dinamikleri barındıran endless runner (sonsuz koşu) mobil oyunu. TMODS Studios oyun projelerinden biridir.</p>
+            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
+              <span class="text-gray-500 text-sm italic"><i class="fas fa-tools mr-1"></i> Geliştirme Aşamasında</span>
+              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proje 3: SlideStone -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative h-48 bg-dark project-image">
+            <img src="images/slidestone.png" alt="SlideStone" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fab fa-flutter text-6xl text-primary/70"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">SlideStone</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Klasik 15 bulmaca oyununun modern ve optimize edilmiş mobil versiyonu. Numaralandırılmış taşları boş alana kaydırarak sıralama mantığına dayanır.</p>
+            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
+              <a href="https://play.google.com/store/apps/details?id=com.tmodsstudio.slidestone&pcampaignid=web_share" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
+                <span>Play Store Link</span>
+                <i class="fas fa-play ml-2 transform group-hover:translate-x-1 transition"></i>
+              </a>
+              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proje 4: Teknik Resim Görüntüleyici -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="relative h-48 bg-dark project-image">
+            <img src="images/erp.png" alt="Teknik Resim Görüntüleyici" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fab fa-flutter text-6xl text-primary/70"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">Teknik Resim Görüntüleyici</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter / REST API</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Gelişmiş filtreleme mekanizmalarına sahip ve arka planda API bağlantısı içeren, teknik doküman ve resim görüntüleme amaçlı mobil uygulama.</p>
+            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
+              <a href="https://github.com/arslansemih35" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
+                <span>İncele</span>
+                <i class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-1 transition"></i>
+              </a>
+              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proje 5: Optik Değerlendirici -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="relative h-48 bg-dark project-image">
+            <img src="images/optik.png" alt="Optik Değerlendirici" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fab fa-microsoft text-6xl text-primary/70"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">Optik Değerlendirici</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">C# / WinForms</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Optik okuyucudan alınan sınav verilerini işleyip hızlı ve hatasız şekilde analiz eden, sonuçları tablo ve rapor halinde sunan masaüstü değerlendirme aracı.</p>
+            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
+              <a href="https://github.com/arslansemih35" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
+                <span>Kaynak Kod</span>
+                <i class="fas fa-code ml-2 transform group-hover:translate-x-1 transition"></i>
+              </a>
+              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark pt-12 pb-6 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="text-xl font-bold">
+            <span class="text-white">&lt;</span>semih<span class="text-primary">.dev</span><span class="text-white">/&gt;</span>
+          </div>
+          <p class="text-gray-400 text-sm mt-2">Yazılım & Mobil Uygulama Geliştirici</p>
+        </div>
+        
+        <div class="flex space-x-4 mb-4 md:mb-0">
+          <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-primary social-icon">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/semih-arslan-a43a5930b/" class="text-gray-400 hover:text-primary social-icon">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="mailto:arslansemih328@gmail.com" class="text-gray-400 hover:text-primary social-icon">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="text-center text-gray-500 text-sm mt-8">
+        © 2025 Semih Arslan | Tüm hakları saklıdır
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Dosyaları -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

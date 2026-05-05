@@ -30,30 +30,34 @@
     }
   </script>
 
-  <!-- Modal Özel CSS -->
+  <!-- Modal Büyüme Animasyonu CSS -->
   <style>
-    /* Modal Arka Planı */
+    /* Modal Arka Planı (Sadece bulanıklık ve kararma) */
     .modal-backdrop {
       background-color: rgba(2, 6, 23, 0.85);
       backdrop-filter: blur(8px);
       z-index: 100;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
     .modal-backdrop.active {
       opacity: 1;
       pointer-events: auto;
     }
 
-    /* Modal İçeriği */
+    /* Modal İçeriği (Küçük karttan büyüme efekti) */
     .modal-content {
-      transform: scale(0.95) translateY(20px);
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      /* Kartın boyutundaymış gibi %5 ölçekte başlatıyoruz */
+      transform: scale(0.05); 
+      /* Hem büyüme hem de şekil değiştirme animasyonu */
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      will-change: transform, opacity;
     }
     .modal-backdrop.active .modal-content {
-      transform: scale(1) translateY(0);
+      /* Orijinal boyutuna (Modal boyutuna) ulaşıyor */
+      transform: scale(1);
       opacity: 1;
     }
 
@@ -110,10 +114,11 @@
       </div>
       
       <!-- Projeler Grid (8 Proje) -->
+      <!-- DİKKAT: event parametresi ile tıklanan kartın konumunu yakalıyoruz -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         <!-- 1. Puantaj Defteri -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="100" onclick="openModal('modal-puantaj')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="100" onclick="openModal('modal-puantaj', event)">
           <div class="relative h-48 bg-dark project-image">
             <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
               <i class="fab fa-google-play text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
@@ -126,15 +131,14 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">Google Play Store'da aktif olarak yayında olan zaman işleyiş ve muhasebe kayıt uygulaması.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
 
         <!-- 2. Mobil ERP Uygulaması -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="200" onclick="openModal('modal-erp')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="200" onclick="openModal('modal-erp', event)">
           <div class="relative h-48 bg-dark project-image">
-            <!-- KLAVUZ: Görsel için img etiketini aktif edebilirsin -->
             <img src="images/erp.png" alt="Mobil ERP" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
             <div class="absolute inset-0 flex items-center justify-center">
               <i class="fas fa-network-wired text-6xl text-primary/70 opacity-0 group-hover:opacity-100 transition duration-300"></i>
@@ -147,13 +151,13 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">Kurumsal kullanım için geliştirilmiş, gelişmiş filtreleme ve API bağlantısı içeren mobil operasyon yönetimi.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
 
         <!-- 3. SlideStone Puzzle Game -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="300" onclick="openModal('modal-slidestone')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="300" onclick="openModal('modal-slidestone', event)">
           <div class="relative h-48 bg-dark project-image">
             <img src="images/slidestone.png" alt="SlideStone" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
             <div class="absolute inset-0 flex items-center justify-center">
@@ -167,13 +171,13 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">Klasik 15 bulmaca oyununun modern, optimize edilmiş ve akıcı animasyonlara sahip mobil versiyonu.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
 
         <!-- 4. Optik Değerlendirici -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="400" onclick="openModal('modal-optik')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="400" onclick="openModal('modal-optik', event)">
           <div class="relative h-48 bg-dark project-image">
             <img src="images/optik.png" alt="Optik Değerlendirici" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
             <div class="absolute inset-0 flex items-center justify-center">
@@ -187,13 +191,13 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">Optik okuyucudan alınan sınav verilerini işleyip analiz eden ve sonuçları raporlayan masaüstü aracı.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
 
         <!-- 5. Zikirmatik -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="500" onclick="openModal('modal-zikirmatik')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="500" onclick="openModal('modal-zikirmatik', event)">
           <div class="relative h-48 bg-dark project-image">
             <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
               <i class="fas fa-fingerprint text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
@@ -206,13 +210,13 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">Kullanıcı dostu arayüzü ve kayıt özellikleriyle pratik kullanım sunan dijital zikirmatik uygulaması.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
 
         <!-- 6. Mihrap Kıble Pusulası -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="600" onclick="openModal('modal-mihrap')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="600" onclick="openModal('modal-mihrap', event)">
           <div class="relative h-48 bg-dark project-image">
             <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
               <i class="fas fa-compass text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
@@ -225,13 +229,13 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">GPS ve cihaz sensörlerini kullanarak en doğru kıble yönünü tespit eden mobil pusula aracı.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
 
         <!-- 7. Panikat -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="700" onclick="openModal('modal-panikat')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="700" onclick="openModal('modal-panikat', event)">
           <div class="relative h-48 bg-dark project-image">
             <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
               <i class="fas fa-bolt text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
@@ -244,13 +248,13 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">Eğlenceli, dinamik yapısı ve kendine has mekanikleriyle dikkat çeken interaktif mobil uygulama projesi.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
 
         <!-- 8. Avukat Sitesi -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="800" onclick="openModal('modal-avukat')">
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="800" onclick="openModal('modal-avukat', event)">
           <div class="relative h-48 bg-dark project-image">
             <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
               <i class="fas fa-balance-scale text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
@@ -263,7 +267,7 @@
             </div>
             <p class="text-gray-400 text-sm mb-6 flex-grow">Hukuk büroları ve avukatlar için tasarlanmış, mobil uyumlu (responsive) kurumsal web sitesi projesi.</p>
             <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
-              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+              <span>Detayları Gör</span> <i class="fas fa-expand-arrows-alt ml-2"></i>
             </div>
           </div>
         </div>
@@ -290,7 +294,6 @@
           <div class="md:w-1/2">
             <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
                <i class="fab fa-google-play text-8xl text-primary/50"></i>
-               <!-- KLAVUZ: <img src="images/puantaj_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
             </div>
           </div>
           <div class="md:w-1/2 flex flex-col">
@@ -448,7 +451,6 @@
             <div class="md:w-1/2">
               <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
                  <i class="fas fa-fingerprint text-8xl text-primary/50"></i>
-                 <!-- KLAVUZ: <img src="images/zikirmatik_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
               </div>
             </div>
             <div class="md:w-1/2 flex flex-col">
@@ -489,7 +491,6 @@
             <div class="md:w-1/2">
               <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
                  <i class="fas fa-compass text-8xl text-primary/50"></i>
-                 <!-- KLAVUZ: <img src="images/mihrap_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
               </div>
             </div>
             <div class="md:w-1/2 flex flex-col">
@@ -527,7 +528,6 @@
             <div class="md:w-1/2">
               <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
                  <i class="fas fa-bolt text-8xl text-primary/50"></i>
-                 <!-- KLAVUZ: <img src="images/panikat_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
               </div>
             </div>
             <div class="md:w-1/2 flex flex-col">
@@ -568,7 +568,6 @@
             <div class="md:w-1/2">
               <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
                  <i class="fas fa-balance-scale text-8xl text-primary/50"></i>
-                 <!-- KLAVUZ: <img src="images/avukat_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
               </div>
             </div>
             <div class="md:w-1/2 flex flex-col">
@@ -627,9 +626,9 @@
     </div>
   </footer>
 
-  <!-- Modal Kontrol Scripti -->
+  <!-- ZEKİ MODAL KONTROL SCRİPTİ -->
   <script>
-    function openModal(modalId) {
+    function openModal(modalId, event) {
       const container = document.getElementById('modalContainer');
       const allModals = document.querySelectorAll('.modal-content');
       
@@ -637,7 +636,33 @@
       
       const targetModal = document.getElementById(modalId);
       if(targetModal) {
+        // Modalı DOM'da görünür yapıyoruz ama henüz active class'ı yok (küçük ve şeffaf)
         targetModal.classList.remove('hidden');
+        
+        // Tıklanan kartın konumunu hesaplama ve Modala Büyüme Noktası Verme (Transform-Origin)
+        if (event && event.currentTarget) {
+          const cardRect = event.currentTarget.getBoundingClientRect();
+          const cardCenterX = cardRect.left + (cardRect.width / 2);
+          const cardCenterY = cardRect.top + (cardRect.height / 2);
+          
+          // CSS scale(0.05)'i hesaba katmamak için geçici olarak 1 yapıp ölçüyoruz
+          targetModal.style.transform = 'scale(1)';
+          const modalRect = targetModal.getBoundingClientRect();
+          targetModal.style.transform = ''; // CSS'teki orijinal değerine (0.05) geri döner
+          
+          const originX = cardCenterX - modalRect.left;
+          const originY = cardCenterY - modalRect.top;
+          
+          targetModal.style.transformOrigin = `${originX}px ${originY}px`;
+        } else {
+          // Eğer event yoksa merkezden büyüsün
+          targetModal.style.transformOrigin = 'center center';
+        }
+        
+        // Animasyonu tetiklemek için tarayıcıyı reflow'a zorluyoruz
+        void targetModal.offsetWidth;
+        
+        // Active sınıfını ekliyoruz ve transform çalışıp devleşiyor
         container.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
@@ -645,6 +670,7 @@
 
     function closeModal(event) {
       const container = document.getElementById('modalContainer');
+      // Kullanıcı siyah arkaplana tıklarsa
       if (event.target === container) {
         forceCloseModal();
       }
@@ -652,14 +678,16 @@
 
     function forceCloseModal() {
         const container = document.getElementById('modalContainer');
-        container.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        container.classList.remove('active'); // CSS ile geriye doğru küçülmeye başlar
+        document.body.style.overflow = 'auto'; // Kaydırmayı geri aç
         
+        // Küçülme animasyonu süresi kadar bekle (0.5s = 500ms) ve sonra DOM'dan tamamen gizle
         setTimeout(() => {
             document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-        }, 300);
+        }, 500);
     }
 
+    // ESC Tuşuna basınca modalı kapatma
     document.addEventListener('keydown', function(event) {
       if (event.key === "Escape") {
         forceCloseModal();

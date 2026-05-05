@@ -29,6 +29,39 @@
       }
     }
   </script>
+
+  <!-- Modal Özel CSS -->
+  <style>
+    /* Modal Arka Planı */
+    .modal-backdrop {
+      background-color: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Modal İçeriği */
+    .modal-content {
+      transform: scale(0.95) translateY(20px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .modal-backdrop.active .modal-content {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    /* Proje Kartı Tıklanabilir Yapma */
+    .project-card {
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body class="bg-dark text-gray-100 font-mono">
   <!-- Background hexagons -->
@@ -73,17 +106,17 @@
         <p class="text-primary mb-2">// Portfolyo</p>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Tüm <span class="text-primary">Projelerim</span></h1>
         <div class="w-24 h-1 bg-primary mt-2"></div>
-        <p class="text-gray-400 mt-6 max-w-2xl">TMODS Studios çatısı altında ve bireysel olarak geliştirdiğim mobil uygulamalar, oyunlar ve masaüstü yazılım projelerinin detaylı arşivi.</p>
+        <p class="text-gray-400 mt-6 max-w-2xl">Geliştirdiğim mobil uygulamalar, oyunlar ve kurumsal web/masaüstü yazılım projelerinin detaylı arşivi. Ekran görüntüleri ve detaylar için projelere tıklayın.</p>
       </div>
       
-      <!-- Projeler Grid -->
+      <!-- Projeler Grid (8 Proje) -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Proje 1: Puantaj Defteri -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="100">
+        <!-- 1. Puantaj Defteri -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="100" onclick="openModal('modal-puantaj')">
           <div class="relative h-48 bg-dark project-image">
             <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
-              <i class="fab fa-google-play text-6xl text-primary/70"></i>
+              <i class="fab fa-google-play text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
             </div>
           </div>
           <div class="p-6 project-content flex flex-col h-full">
@@ -91,112 +124,146 @@
               <h3 class="text-xl font-bold">Puantaj Defteri</h3>
               <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter</span>
             </div>
-            <p class="text-gray-400 text-sm mb-6 flex-grow">Google Play Store'da aktif olarak yayında olan zaman işleyiş ve muhasebe kayıt uygulaması. Gelişmiş veri tabanı mimarisi (v113) ve sorunsuz veri transfer (migration) sistemleri içerir.</p>
-            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
-              <a href="#" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
-                <span>Play Store Link</span>
-                <i class="fas fa-play ml-2 transform group-hover:translate-x-1 transition"></i>
-              </a>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Google Play Store'da aktif olarak yayında olan zaman işleyiş ve muhasebe kayıt uygulaması.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
             </div>
           </div>
         </div>
 
-        <!-- Proje 2: ByteDash: Syntax Escape -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="200">
+        <!-- 2. Mobil ERP Uygulaması -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="200" onclick="openModal('modal-erp')">
           <div class="relative h-48 bg-dark project-image">
-            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
-              <i class="fab fa-unity text-6xl text-primary/70"></i>
+            <!-- KLAVUZ: Görsel için img etiketini aktif edebilirsin -->
+            <img src="images/erp.png" alt="Mobil ERP" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-network-wired text-6xl text-primary/70 opacity-0 group-hover:opacity-100 transition duration-300"></i>
             </div>
           </div>
           <div class="p-6 project-content flex flex-col h-full">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-bold truncate pr-2">ByteDash: Syntax Escape</h3>
-              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Unity / Flutter</span>
+              <h3 class="text-xl font-bold">Mobil ERP Uygulaması</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter / REST API</span>
             </div>
-            <p class="text-gray-400 text-sm mb-6 flex-grow">Geliştirme aşamasında olan, 3D dinamikleri barındıran endless runner (sonsuz koşu) mobil oyunu. TMODS Studios oyun projelerinden biridir.</p>
-            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
-              <span class="text-gray-500 text-sm italic"><i class="fas fa-tools mr-1"></i> Geliştirme Aşamasında</span>
-              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
-                <i class="fab fa-github text-xl"></i>
-              </a>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Kurumsal kullanım için geliştirilmiş, gelişmiş filtreleme ve API bağlantısı içeren mobil operasyon yönetimi.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
             </div>
           </div>
         </div>
 
-        <!-- Proje 3: SlideStone -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="300">
+        <!-- 3. SlideStone Puzzle Game -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="300" onclick="openModal('modal-slidestone')">
           <div class="relative h-48 bg-dark project-image">
             <img src="images/slidestone.png" alt="SlideStone" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
             <div class="absolute inset-0 flex items-center justify-center">
-              <i class="fab fa-flutter text-6xl text-primary/70"></i>
+              <i class="fas fa-puzzle-piece text-6xl text-primary/70 opacity-0 group-hover:opacity-100 transition duration-300"></i>
             </div>
           </div>
           <div class="p-6 project-content flex flex-col h-full">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-bold">SlideStone</h3>
-              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter</span>
+              <h3 class="text-xl font-bold">SlideStone Puzzle</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter / Game</span>
             </div>
-            <p class="text-gray-400 text-sm mb-6 flex-grow">Klasik 15 bulmaca oyununun modern ve optimize edilmiş mobil versiyonu. Numaralandırılmış taşları boş alana kaydırarak sıralama mantığına dayanır.</p>
-            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
-              <a href="https://play.google.com/store/apps/details?id=com.tmodsstudio.slidestone&pcampaignid=web_share" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
-                <span>Play Store Link</span>
-                <i class="fas fa-play ml-2 transform group-hover:translate-x-1 transition"></i>
-              </a>
-              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
-                <i class="fab fa-github text-xl"></i>
-              </a>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Klasik 15 bulmaca oyununun modern, optimize edilmiş ve akıcı animasyonlara sahip mobil versiyonu.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
             </div>
           </div>
         </div>
 
-        <!-- Proje 4: Teknik Resim Görüntüleyici -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="relative h-48 bg-dark project-image">
-            <img src="images/erp.png" alt="Teknik Resim Görüntüleyici" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <i class="fab fa-flutter text-6xl text-primary/70"></i>
-            </div>
-          </div>
-          <div class="p-6 project-content flex flex-col h-full">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-bold">Teknik Resim Görüntüleyici</h3>
-              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Flutter / REST API</span>
-            </div>
-            <p class="text-gray-400 text-sm mb-6 flex-grow">Gelişmiş filtreleme mekanizmalarına sahip ve arka planda API bağlantısı içeren, teknik doküman ve resim görüntüleme amaçlı mobil uygulama.</p>
-            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
-              <a href="https://github.com/arslansemih35" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
-                <span>İncele</span>
-                <i class="fas fa-external-link-alt ml-2 transform group-hover:translate-x-1 transition"></i>
-              </a>
-              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
-                <i class="fab fa-github text-xl"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Proje 5: Optik Değerlendirici -->
-        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="500">
+        <!-- 4. Optik Değerlendirici -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="400" onclick="openModal('modal-optik')">
           <div class="relative h-48 bg-dark project-image">
             <img src="images/optik.png" alt="Optik Değerlendirici" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition" onerror="this.src='https://api.placeholder.com/400/200';">
             <div class="absolute inset-0 flex items-center justify-center">
-              <i class="fab fa-microsoft text-6xl text-primary/70"></i>
+              <i class="fas fa-tasks text-6xl text-primary/70 opacity-0 group-hover:opacity-100 transition duration-300"></i>
             </div>
           </div>
           <div class="p-6 project-content flex flex-col h-full">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-xl font-bold">Optik Değerlendirici</h3>
-              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">C# / WinForms</span>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">C# WinForms</span>
             </div>
-            <p class="text-gray-400 text-sm mb-6 flex-grow">Optik okuyucudan alınan sınav verilerini işleyip hızlı ve hatasız şekilde analiz eden, sonuçları tablo ve rapor halinde sunan masaüstü değerlendirme aracı.</p>
-            <div class="flex justify-between items-center mt-auto border-t border-gray-700 pt-4">
-              <a href="https://github.com/arslansemih35" class="text-primary hover:text-primary-light flex items-center group-hover:underline">
-                <span>Kaynak Kod</span>
-                <i class="fas fa-code ml-2 transform group-hover:translate-x-1 transition"></i>
-              </a>
-              <a href="https://github.com/arslansemih35" class="text-gray-400 hover:text-white social-icon">
-                <i class="fab fa-github text-xl"></i>
-              </a>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Optik okuyucudan alınan sınav verilerini işleyip analiz eden ve sonuçları raporlayan masaüstü aracı.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Zikirmatik -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="500" onclick="openModal('modal-zikirmatik')">
+          <div class="relative h-48 bg-dark project-image">
+            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
+              <i class="fas fa-fingerprint text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">Zikirmatik</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Mobil Uygulama</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Kullanıcı dostu arayüzü ve kayıt özellikleriyle pratik kullanım sunan dijital zikirmatik uygulaması.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Mihrap Kıble Pusulası -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="600" onclick="openModal('modal-mihrap')">
+          <div class="relative h-48 bg-dark project-image">
+            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
+              <i class="fas fa-compass text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">Mihrap Kıble Pusulası</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Mobil Uygulama</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">GPS ve cihaz sensörlerini kullanarak en doğru kıble yönünü tespit eden mobil pusula aracı.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Panikat -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="700" onclick="openModal('modal-panikat')">
+          <div class="relative h-48 bg-dark project-image">
+            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
+              <i class="fas fa-bolt text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">Panikat</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Mobil Proje</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Eğlenceli, dinamik yapısı ve kendine has mekanikleriyle dikkat çeken interaktif mobil uygulama projesi.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Avukat Sitesi -->
+        <div class="bg-dark-light rounded-lg overflow-hidden group tilt-card project-card" data-aos="fade-up" data-aos-delay="800" onclick="openModal('modal-avukat')">
+          <div class="relative h-48 bg-dark project-image">
+            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark to-dark-light">
+              <i class="fas fa-balance-scale text-6xl text-primary/70 group-hover:scale-110 transition duration-300"></i>
+            </div>
+          </div>
+          <div class="p-6 project-content flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold">Avukat Sitesi</h3>
+              <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs project-tags border border-primary/30">Web Geliştirme</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6 flex-grow">Hukuk büroları ve avukatlar için tasarlanmış, mobil uyumlu (responsive) kurumsal web sitesi projesi.</p>
+            <div class="text-primary text-sm mt-auto border-t border-gray-700 pt-4 flex items-center justify-center group-hover:text-primary-light transition">
+              <span>Detayları Gör</span> <i class="fas fa-search-plus ml-2"></i>
             </div>
           </div>
         </div>
@@ -205,8 +272,333 @@
     </div>
   </section>
 
+  <!-- ================= MODAL YAPILARI BAŞLANGIÇ ================= -->
+  <div id="modalContainer" class="modal-backdrop fixed inset-0 flex items-center justify-center p-4 sm:p-6" onclick="closeModal(event)">
+    
+    <!-- MODAL 1: Puantaj Defteri -->
+    <div id="modal-puantaj" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+      <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+        <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+            <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+            <div class="terminal-circle bg-yellow-500"></div>
+            <div class="terminal-circle bg-green-500"></div>
+            <div class="ml-4 text-sm text-gray-400 font-mono">./projects/puantaj_defteri.apk</div>
+        </div>
+      </div>
+      <div class="p-6 md:p-8">
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2">
+            <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
+               <i class="fab fa-google-play text-8xl text-primary/50"></i>
+               <!-- KLAVUZ: <img src="images/puantaj_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
+            </div>
+          </div>
+          <div class="md:w-1/2 flex flex-col">
+            <h2 class="text-3xl font-bold mb-2 text-white">Puantaj Defteri</h2>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Flutter</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Dart</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Veri Tabanı</span>
+            </div>
+            <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+            <p class="text-gray-300 mb-4 leading-relaxed">
+              Google Play Store'da aktif olarak yayında olan, kullanıcıların çalışma saatlerini ve hesaplarını yönettikleri gelişmiş bir zaman işleyiş uygulamasıdır. 
+            </p>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              Gelişmiş veri tabanı mimarisi (v113) ile veri transferi ve yedekleme (migration) özelliklerini kusursuz bir şekilde yerine getirir.
+            </p>
+            <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+              <a href="#" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                <i class="fab fa-google-play mr-2"></i> Play Store
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 2: Mobil ERP Uygulaması -->
+    <div id="modal-erp" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+        <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+          <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+              <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+              <div class="terminal-circle bg-yellow-500"></div>
+              <div class="terminal-circle bg-green-500"></div>
+              <div class="ml-4 text-sm text-gray-400 font-mono">./projects/mobil_erp.apk</div>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark h-64 md:h-full">
+                 <img src="images/erp.png" alt="Mobil ERP Detay" class="w-full h-full object-cover" onerror="this.src='https://api.placeholder.com/600/400';">
+              </div>
+            </div>
+            <div class="md:w-1/2 flex flex-col">
+              <h2 class="text-3xl font-bold mb-2 text-white">Mobil ERP Uygulaması</h2>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Flutter</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">REST API</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">B2B</span>
+              </div>
+              <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Kurumsal veya endüstriyel kullanımlar için tasarlanmış, uzak sunucudaki teknik dokümanları ve verileri mobil cihaza çeken operasyonel bir araçtır.
+              </p>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Gelişmiş arama, filtreleme mekanizmaları barındırır ve backend sistemleriyle REST API üzerinden güvenli şekilde haberleşir.
+              </p>
+              <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+                <a href="https://github.com/arslansemih35" class="border border-gray-600 hover:border-primary hover:text-primary text-gray-300 px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                  <i class="fab fa-github mr-2"></i> İncele
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- MODAL 3: SlideStone Puzzle Game -->
+    <div id="modal-slidestone" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+        <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+          <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+              <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+              <div class="terminal-circle bg-yellow-500"></div>
+              <div class="terminal-circle bg-green-500"></div>
+              <div class="ml-4 text-sm text-gray-400 font-mono">./projects/slidestone_puzzle.apk</div>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark h-64 md:h-full">
+                 <img src="images/slidestone.png" alt="SlideStone Detay" class="w-full h-full object-cover" onerror="this.src='https://api.placeholder.com/600/400';">
+              </div>
+            </div>
+            <div class="md:w-1/2 flex flex-col">
+              <h2 class="text-3xl font-bold mb-2 text-white">SlideStone Puzzle Game</h2>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Flutter</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Game Logic</span>
+              </div>
+              <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Klasik 15 bulmaca oyununun (15-puzzle) modern ve optimize edilmiş bir mobil versiyonudur. Numaralandırılmış taşları kaydırarak sıralama mantığına dayanır.
+              </p>
+              <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+                <a href="https://play.google.com/store/apps/details?id=com.tmodsstudio.slidestone" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                  <i class="fab fa-google-play mr-2"></i> Play Store
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 4: Optik Değerlendirici -->
+      <div id="modal-optik" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+        <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+          <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+              <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+              <div class="terminal-circle bg-yellow-500"></div>
+              <div class="terminal-circle bg-green-500"></div>
+              <div class="ml-4 text-sm text-gray-400 font-mono">C:\Projects\OptikDegerlendirici.exe</div>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark h-64 md:h-full">
+                 <img src="images/optik.png" alt="Optik Değerlendirici Detay" class="w-full h-full object-cover" onerror="this.src='https://api.placeholder.com/600/400';">
+              </div>
+            </div>
+            <div class="md:w-1/2 flex flex-col">
+              <h2 class="text-3xl font-bold mb-2 text-white">Optik Değerlendirici</h2>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">C#</span>
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">WinForms</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Data Processing</span>
+              </div>
+              <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Optik okuyucu cihazlardan elde edilen sınav verilerini işleyerek doğru/yanlış/net sayılarını hesaplayan masaüstü yazılımıdır. Raporlama ve istatistik sunar.
+              </p>
+              <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+                <a href="https://github.com/arslansemih35" class="border border-gray-600 hover:border-primary hover:text-primary text-gray-300 px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                  <i class="fab fa-github mr-2"></i> İncele
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 5: Zikirmatik -->
+      <div id="modal-zikirmatik" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+        <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+          <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+              <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+              <div class="terminal-circle bg-yellow-500"></div>
+              <div class="terminal-circle bg-green-500"></div>
+              <div class="ml-4 text-sm text-gray-400 font-mono">./projects/zikirmatik.apk</div>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
+                 <i class="fas fa-fingerprint text-8xl text-primary/50"></i>
+                 <!-- KLAVUZ: <img src="images/zikirmatik_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
+              </div>
+            </div>
+            <div class="md:w-1/2 flex flex-col">
+              <h2 class="text-3xl font-bold mb-2 text-white">Zikirmatik</h2>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Mobil Geliştirme</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">UI/UX</span>
+              </div>
+              <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Kullanıcıların ibadetlerini kolayca takip edebilmeleri için geliştirilmiş dijital zikirmatik uygulamasıdır. Sade tasarımı ile her yaştan kullanıcıya hitap eder.
+              </p>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Sayaç kaydetme, sıfırlama, titreşim ve sesli geri bildirim gibi temel özellikleri stabil bir performansla sunar.
+              </p>
+              <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+                <a href="https://github.com/arslansemih35" class="border border-gray-600 hover:border-primary hover:text-primary text-gray-300 px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                  <i class="fas fa-code mr-2"></i> Projeyi Gör
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 6: Mihrap Kıble Pusulası -->
+      <div id="modal-mihrap" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+        <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+          <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+              <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+              <div class="terminal-circle bg-yellow-500"></div>
+              <div class="terminal-circle bg-green-500"></div>
+              <div class="ml-4 text-sm text-gray-400 font-mono">./projects/mihrap_kible.apk</div>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
+                 <i class="fas fa-compass text-8xl text-primary/50"></i>
+                 <!-- KLAVUZ: <img src="images/mihrap_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
+              </div>
+            </div>
+            <div class="md:w-1/2 flex flex-col">
+              <h2 class="text-3xl font-bold mb-2 text-white">Mihrap Kıble Pusulası</h2>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Sensör Entegrasyonu</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">GPS</span>
+              </div>
+              <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Kullanıcının anlık coğrafi konumunu (GPS) ve cihazın manyetik sensörlerini okuyarak, dünyadaki her noktadan doğru kıble yönünü gösteren bir mobil pusuladır.
+              </p>
+              <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+                <a href="https://github.com/arslansemih35" class="border border-gray-600 hover:border-primary hover:text-primary text-gray-300 px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                  <i class="fas fa-code mr-2"></i> Projeyi Gör
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 7: Panikat -->
+      <div id="modal-panikat" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+        <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+          <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+              <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+              <div class="terminal-circle bg-yellow-500"></div>
+              <div class="terminal-circle bg-green-500"></div>
+              <div class="ml-4 text-sm text-gray-400 font-mono">./projects/panikat.apk</div>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
+                 <i class="fas fa-bolt text-8xl text-primary/50"></i>
+                 <!-- KLAVUZ: <img src="images/panikat_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
+              </div>
+            </div>
+            <div class="md:w-1/2 flex flex-col">
+              <h2 class="text-3xl font-bold mb-2 text-white">Panikat</h2>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Mobil Geliştirme</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">İnteraktif</span>
+              </div>
+              <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Hızlı kararlar verilmesini gerektiren, eğlenceli ve dinamik bir yapıyla kurgulanmış mobil proje.
+              </p>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Akıcı ekran geçişleri ve özel mantık algoritmaları üzerine inşa edilmiş yenilikçi bir uygulamadır.
+              </p>
+              <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+                <a href="https://github.com/arslansemih35" class="border border-gray-600 hover:border-primary hover:text-primary text-gray-300 px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                  <i class="fas fa-code mr-2"></i> Projeyi Gör
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 8: Avukat Sitesi -->
+      <div id="modal-avukat" class="modal-content bg-dark-light border border-gray-700 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto hidden">
+        <div class="p-1 border-b border-gray-700 flex justify-between items-center bg-dark sticky top-0 z-10">
+          <div class="terminal-header w-full rounded-none border-0 m-0 pb-2">
+              <div class="terminal-circle bg-red-500 cursor-pointer hover:bg-red-400" onclick="forceCloseModal()" title="Kapat"></div>
+              <div class="terminal-circle bg-yellow-500"></div>
+              <div class="terminal-circle bg-green-500"></div>
+              <div class="ml-4 text-sm text-gray-400 font-mono">./projects/avukat_sitesi/index.html</div>
+          </div>
+        </div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <div class="rounded-lg overflow-hidden border border-gray-700 bg-dark flex items-center justify-center h-64 md:h-full">
+                 <i class="fas fa-balance-scale text-8xl text-primary/50"></i>
+                 <!-- KLAVUZ: <img src="images/avukat_buyuk.png" alt="Detay" class="w-full h-full object-cover"> -->
+              </div>
+            </div>
+            <div class="md:w-1/2 flex flex-col">
+              <h2 class="text-3xl font-bold mb-2 text-white">Avukat Sitesi</h2>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">HTML / CSS / JS</span>
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Kurumsal Web</span>
+              </div>
+              <h4 class="text-lg font-semibold text-primary mb-2">Proje Hakkında</h4>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Bir hukuk bürosunun kurumsal dijital kimliğini oluşturmak amacıyla geliştirilmiş web sitesi projesi.
+              </p>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Tüm mobil cihazlarla %100 uyumlu (responsive) yapısı, modern tasarım trendleri ve hızlı yüklenme süresi ön planda tutularak kodlanmıştır.
+              </p>
+              <div class="mt-auto pt-6 border-t border-gray-800 flex gap-4">
+                <a href="https://github.com/arslansemih35" class="border border-gray-600 hover:border-primary hover:text-primary text-gray-300 px-6 py-3 rounded-md font-medium transition flex-1 text-center flex items-center justify-center">
+                  <i class="fas fa-external-link-alt mr-2"></i> İncele
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <!-- ================= MODAL YAPILARI BİTİŞ ================= -->
+
   <!-- Footer -->
-  <footer class="bg-dark pt-12 pb-6 border-t border-gray-800">
+  <footer class="bg-dark pt-12 pb-6 border-t border-gray-800 mt-12">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="mb-4 md:mb-0">
@@ -235,7 +627,47 @@
     </div>
   </footer>
 
-  <!-- JS Dosyaları -->
+  <!-- Modal Kontrol Scripti -->
+  <script>
+    function openModal(modalId) {
+      const container = document.getElementById('modalContainer');
+      const allModals = document.querySelectorAll('.modal-content');
+      
+      allModals.forEach(modal => modal.classList.add('hidden'));
+      
+      const targetModal = document.getElementById(modalId);
+      if(targetModal) {
+        targetModal.classList.remove('hidden');
+        container.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(event) {
+      const container = document.getElementById('modalContainer');
+      if (event.target === container) {
+        forceCloseModal();
+      }
+    }
+
+    function forceCloseModal() {
+        const container = document.getElementById('modalContainer');
+        container.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        
+        setTimeout(() => {
+            document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+        }, 300);
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === "Escape") {
+        forceCloseModal();
+      }
+    });
+  </script>
+
+  <!-- Genel JS Dosyaları -->
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
 </body>

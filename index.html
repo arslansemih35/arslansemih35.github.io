@@ -97,12 +97,15 @@
           <span class="text-white">&lt;</span>semih<span class="text-primary">.dev</span><span class="text-white">/&gt;</span>
         </div>
       </a>
-      <nav class="hidden md:flex space-x-8 text-sm">
+      <nav class="hidden md:flex space-x-8 text-sm items-center">
         <a href="#about" class="nav-item hover:text-primary">Hakkımda</a>
         <a href="#skills" class="nav-item hover:text-primary">Yetenekler</a>
         <a href="#projects" class="nav-item hover:text-primary">Projeler</a>
         <a href="#community" class="nav-item hover:text-primary">Topluluk</a>
         <a href="#contact" class="nav-item hover:text-primary">İletişim</a>
+        <a href="cv.html" class="border border-primary text-primary hover:bg-primary/10 px-3 py-1 rounded-md transition">
+          <i class="fas fa-file-lines mr-1"></i> CV
+        </a>
       </nav>
       <button class="md:hidden text-xl" id="menuToggle">
         <i class="fas fa-bars"></i>
@@ -116,6 +119,7 @@
         <a href="#projects" class="py-2 hover:text-primary">Projeler</a>
         <a href="#community" class="py-2 hover:text-primary">Topluluk</a>
         <a href="#contact" class="py-2 hover:text-primary">İletişim</a>
+        <a href="cv.html" class="py-2 text-primary"><i class="fas fa-file-lines mr-1"></i> CV</a>
       </div>
     </div>
   </header>
@@ -136,13 +140,17 @@
         <span id="typed"></span>
         <span class="cursor"></span>
       </div>
-      <div class="flex flex-col sm:flex-row gap-4 mt-8">
+      <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
         <a href="#projects" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-md font-medium transition flex items-center justify-center group">
           <span>Projelerime Göz At</span>
           <i class="fas fa-arrow-right ml-2 transition transform group-hover:translate-x-1"></i>
         </a>
         <a href="#contact" class="border border-primary text-primary hover:bg-primary/10 px-8 py-4 rounded-md font-medium transition">
           Benimle İletişime Geç
+        </a>
+        <a href="Semih_Arslan_CV.pdf" download="Semih_Arslan_CV.pdf" class="border border-gray-600 text-gray-300 hover:border-primary hover:text-primary px-8 py-4 rounded-md font-medium transition flex items-center justify-center">
+          <i class="fas fa-download mr-2"></i>
+          <span>CV'mi İndir</span>
         </a>
       </div>
       <div class="flex justify-center mt-12 space-x-6">
@@ -648,6 +656,23 @@ E-ticaret uygulamaları, oyun geliştirme ve kurumsal yazılım projelerinde yer
               </div>
             </div>
 
+            <!-- Özgeçmiş (CV) kartı -->
+            <div class="bg-dark p-6 rounded-lg shadow-lg mt-8" data-aos="fade-up" data-aos-delay="50">
+              <h3 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-file-lines text-primary mr-2"></i>
+                Özgeçmiş
+              </h3>
+              <p class="text-gray-400 text-sm mb-4">CV'mi tarayıcıda görüntüleyebilir veya PDF olarak indirebilirsiniz.</p>
+              <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3">
+                <a href="Semih_Arslan_CV.pdf" download="Semih_Arslan_CV.pdf" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition inline-flex items-center justify-center">
+                  <i class="fas fa-download mr-2"></i> PDF İndir
+                </a>
+                <a href="cv.html" class="border border-primary text-primary hover:bg-primary/10 px-4 py-2 rounded-md font-medium transition inline-flex items-center justify-center">
+                  <i class="fas fa-eye mr-2"></i> Görüntüle
+                </a>
+              </div>
+            </div>
+
             <!-- Discord Widget - İletişim bölümünde küçük versiyon -->
             <div class="bg-dark p-6 rounded-lg shadow-lg mt-8" data-aos="fade-up" data-aos-delay="100">
               <h3 class="text-xl font-semibold mb-4 flex items-center">
@@ -736,6 +761,7 @@ E-ticaret uygulamaları, oyun geliştirme ve kurumsal yazılım projelerinde yer
             <a href="#skills" class="text-gray-400 hover:text-primary">Yetenekler</a>
             <a href="#projects" class="text-gray-400 hover:text-primary">Projeler</a>
             <a href="#contact" class="text-gray-400 hover:text-primary">İletişim</a>
+            <a href="cv.html" class="text-gray-400 hover:text-primary">CV</a>
           </div>
         </div>
         
